@@ -6,9 +6,10 @@ export default StyleSheet.create({
     borderRadius: 4,
     paddingVertical: 8,
     alignItems: 'center',
+    width: Dimensions.get('window').width * 0.25,
   },
   title: {
     color: '#fff',
     fontWeight: 'bold',
-  }
+  },
 })

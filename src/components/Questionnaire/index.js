@@ -3,22 +3,13 @@ import { FlatList, Text, TouchableOpacity } from 'react-native'
 
 import styles from './styles'
 
-export default function List({ data, headerTitle, onPressItem }) {
+export default function Questionnaire({ data, headerTitle, onPressItem }) {
   function renderItem({ item }) {
     return (
-      <TouchableOpacity
-        style={styles.containerItem}
-        onPress={() => onPressItem(item)}
-      >
-        <Text style={styles.textItem}>{item.title}</Text>
+      <TouchableOpacity style={styles.containerItem} onPress={onPressItem}>
+        <Text style={styles.textItem}>{item}</Text>
       </TouchableOpacity>
     )
-  }
-
-  function keyExtractor(item) {
-    if (item) {
-      return String(item.id)
-    }
   }
 
   function Header() {
@@ -33,7 +24,6 @@ export default function List({ data, headerTitle, onPressItem }) {
     <FlatList
       data={data}
       renderItem={renderItem}
-      keyExtractor={keyExtractor}
       ListHeaderComponent={Header}
     />
   )
