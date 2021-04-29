@@ -13,9 +13,9 @@ export default function Answers({ navigation, route }) {
   const [answers, setAnswers] = useState([])
 
   async function getAnswers() {
-    const response = await api.get('/answers')
+    const response = await api.get(`/questionnaires/${item.id}/answers`)
 
-    const formattedAnswers = response.data.map(({ id }) => ({ id, title: id }))
+    const formattedAnswers = response.data.map(({ id }) => ({ id, title: `Resposta ${id}` }))
 
     setAnswers(formattedAnswers)
   }
