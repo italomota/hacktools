@@ -4,6 +4,14 @@ import { FlatList, Text, TouchableOpacity } from 'react-native'
 import styles from './styles'
 
 export default function List({ data, headerTitle, onPressItem }) {
+  function keyExtractor(item) {
+    return String(item.id)
+  }
+
+  function Header() {
+    return <Text style={styles.headerTitle}>{headerTitle}</Text>
+  }
+
   function renderItem({ item }) {
     return (
       <TouchableOpacity
@@ -13,20 +21,6 @@ export default function List({ data, headerTitle, onPressItem }) {
         <Text style={styles.textItem}>{item.title}</Text>
       </TouchableOpacity>
     )
-  }
-
-  function keyExtractor(item) {
-    if (item) {
-      return String(item.id)
-    }
-  }
-
-  function Header() {
-    if (!headerTitle) {
-      return null
-    }
-
-    return <Text style={styles.headerTitle}>{headerTitle}</Text>
   }
 
   return (
