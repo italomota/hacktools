@@ -1,30 +1,29 @@
 import React from 'react'
-import { FlatList, Text, TouchableOpacity } from 'react-native'
+import { View, FlatList, Text, TextInput } from 'react-native'
 
 import styles from './styles'
 
-export default function Questionnaire({ data, headerTitle, onPressItem }) {
+export default function Questionnaire({ data }) {
   function renderItem({ item }) {
     return (
-      <TouchableOpacity style={styles.containerItem} onPress={onPressItem}>
-        <Text style={styles.textItem}>{item}</Text>
-      </TouchableOpacity>
+      <View style={styles.itemContainer}>
+        <Text style={styles.question}>{item.question}</Text>
+        {!!item.answer
+          ? (
+            <Text>R: {item.answer}</Text>
+          )
+          : (
+            <TextInput style={styles.inputAnswer} />
+          )
+        }
+      </View>
     )
-  }
-
-  function Header() {
-    if (!headerTitle) {
-      return null
-    }
-
-    return <Text style={styles.headerTitle}>{headerTitle}</Text>
   }
 
   return (
     <FlatList
       data={data}
       renderItem={renderItem}
-      ListHeaderComponent={Header}
     />
   )
 }
