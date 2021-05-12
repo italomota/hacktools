@@ -15,10 +15,10 @@ export default function List({ data, headerTitle, onPressItem }) {
   function renderItem({ item }) {
     return (
       <TouchableOpacity
-        style={styles.containerItem}
+        style={styles.itemContainer}
         onPress={() => onPressItem(item)}
       >
-        <Text style={styles.textItem}>{item.title}</Text>
+        <Text style={styles.itemText}>{item.title}</Text>
       </TouchableOpacity>
     )
   }
