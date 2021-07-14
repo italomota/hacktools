@@ -1,16 +1,10 @@
 import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
-  container: {
-    marginTop: 16,
+  leftButton: {
+    marginLeft: 16,
     paddingHorizontal: 16,
-  },
-  headerButtons: {
-    marginBottom: 16,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  plusButton: {
-    width: 40,
-  },
+    width: 80,
+    backgroundColor: '#0f0'
+  }
 })

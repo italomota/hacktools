@@ -4,8 +4,6 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 
 import Home from './views/Home'
-import Login from './views/Login'
-import Answers from './views/Answers'
 
 const Stack = createStackNavigator()
 
@@ -16,29 +14,7 @@ export default function App() {
         <Stack.Screen
           name="Home"
           component={Home}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Login"
-          component={Login}
-          options={{
-            headerTitle: '',
-            headerStyle: {
-              backgroundColor: '#eee',
-              elevation: 0,
-            },
-          }}
-        />
-        <Stack.Screen
-          name="Answers"
-          component={Answers}
-          options={{
-            headerTitle: '',
-            headerStyle: {
-              backgroundColor: '#eee',
-              elevation: 0,
-            },
-          }}
+          options={{ title: 'Hacktools', headerTitleStyle: { backgroundColor: '#00f' }, headerStyle: { marginHorizontal: 16 } }}
         />
       </Stack.Navigator>
     </NavigationContainer>
