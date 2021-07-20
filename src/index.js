@@ -14,7 +14,7 @@ export default function App() {
         <Stack.Screen
           name="Home"
           component={Home}
-          options={{ title: 'Hacktools', headerTitleStyle: { backgroundColor: '#00f' }, headerStyle: { marginHorizontal: 16 } }}
+          options={{ title: 'Hacktools' }}
         />
       </Stack.Navigator>
     </NavigationContainer>
