@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 
 import Home from './views/Home'
+import Answers from './views/Answers'
 
 const Stack = createStackNavigator()
 
@@ -15,6 +16,10 @@ export default function App() {
           name="Home"
           component={Home}
           options={{ title: 'Hacktools' }}
+        />
+        <Stack.Screen
+          name="Answers"
+          component={Answers}
         />
       </Stack.Navigator>
     </NavigationContainer>

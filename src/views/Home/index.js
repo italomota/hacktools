@@ -17,7 +17,10 @@ export default function Home({ navigation }) {
           onPress={() => {}}
           buttonStyle={styles.leftButton}
         />
-      )
+      ),
+      headerTitleStyle: {
+        marginLeft: 16,
+      }
     })
   }, [navigation])
 
@@ -38,7 +41,7 @@ export default function Home({ navigation }) {
       <List
         headerTitle="Questionários"
         data={questionnaires}
-        onPressItem={() => {}}
+        onPressItem={item => navigation.navigate('Answers', { questionnaire: item })}
       />
     </View>
   )

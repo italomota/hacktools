@@ -6,7 +6,7 @@ export default StyleSheet.create({
     paddingHorizontal: 8,
   },
   leftButton: {
-    marginLeft: 4,
+    marginLeft: 8,
     paddingHorizontal: 8,
   }
 })
