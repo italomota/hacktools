@@ -29,7 +29,11 @@ export default function Answers({ navigation, route }) {
   async function getAnswers() {
     const response = await api.get(`/questionnaires/${questionnaire.id}/answers`)
 
-    const formattedAnswers = response.data.map(({ id }) => ({ id, title: `Resposta ${id}` }))
+    const formattedAnswers = []
+
+    for (let i = 0; i < response.data.length; i++) {
+      formattedAnswers.push({ id: response.data[i].id, title: `Resposta ${i + 1}` })
+    }
 
     setAnswers(formattedAnswers)
   }
@@ -40,7 +44,7 @@ export default function Answers({ navigation, route }) {
 
   return (
     <View style={styles.container}>
-      <List data={answers} headerTitle="Respostas" onPressItem={() => {}} />
+      <List data={answers} headerTitle="Respostas" onPressItem={item => console.log(item)} />
     </View>
   )
 }
