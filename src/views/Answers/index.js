@@ -44,7 +44,11 @@ export default function Answers({ navigation, route }) {
 
   return (
     <View style={styles.container}>
-      <List data={answers} headerTitle="Respostas" onPressItem={item => console.log(item)} />
+      <List
+        data={answers}
+        headerTitle="Respostas"
+        onPressItem={item => navigation.navigate('Details', { answer: item })}
+      />
     </View>
   )
 }
