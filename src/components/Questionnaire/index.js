@@ -4,6 +4,10 @@ import { View, FlatList, Text, TextInput } from 'react-native'
 import styles from './styles'
 
 export default function Questionnaire({ data }) {
+  function keyExtractor(item) {
+    return String(item.question)
+  }
+
   function renderItem({ item }) {
     return (
       <View style={styles.itemContainer}>
@@ -24,6 +28,7 @@ export default function Questionnaire({ data }) {
     <FlatList
       data={data}
       renderItem={renderItem}
+      keyExtractor={keyExtractor}
     />
   )
 }
