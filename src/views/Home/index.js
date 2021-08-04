@@ -11,6 +11,7 @@ import styles from './styles'
 export default function Home({ navigation }) {
   useLayoutEffect(() => {
     navigation.setOptions({
+      title: 'Hacktools',
       headerLeft: () => (
         <Button
           title="LOGIN"
