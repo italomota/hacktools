@@ -6,13 +6,18 @@ import { createStackNavigator } from '@react-navigation/stack'
 import Home from './views/Home'
 import Answers from './views/Answers'
 import Details from './views/Details'
+import Login from './views/Login'
 
 const Stack = createStackNavigator()
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          title: 'Hacktools'
+        }}
+      >
         <Stack.Screen
           name="Home"
           component={Home}
@@ -24,6 +29,10 @@ export default function App() {
         <Stack.Screen
           name="Details"
           component={Details}
+        />
+        <Stack.Screen
+          name="Login"
+          component={Login}
         />
       </Stack.Navigator>
     </NavigationContainer>
