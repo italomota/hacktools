@@ -21,7 +21,11 @@ export default function Login({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Input placeholder="Usuário" onChangeText={(text) => setUser(text)} />
+      <Input
+        placeholder="Usuário"
+        onChangeText={setUser}
+        inputStyle={styles.input}
+      />
       <Button title="ENTRAR" onPress={login} containerStyle={styles.button} />
     </View>
   )
