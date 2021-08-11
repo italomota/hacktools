@@ -8,5 +8,9 @@ export default StyleSheet.create({
   leftButton: {
     marginLeft: 8,
     paddingHorizontal: 8,
+  },
+  rightButton: {
+    marginRight: 8,
+    paddingHorizontal: 12,
   }
 })
