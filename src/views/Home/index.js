@@ -11,21 +11,6 @@ import List from '../../components/List'
 import styles from './styles'
 
 export default function Home({ navigation }) {
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerLeft: () => (
-        <Button
-          title="LOGIN"
-          onPress={() => navigation.navigate('Login')}
-          buttonStyle={styles.leftButton}
-        />
-      ),
-      headerTitleStyle: {
-        marginLeft: 16,
-      }
-    })
-  }, [navigation])
-
   const [questionnaires, setQuestionnaires] = useState([])
   const [user, setUser] = useState('')
 
@@ -44,40 +29,49 @@ export default function Home({ navigation }) {
     const loggedUser = await AsyncStorage.getItem('user')
 
     setUser(loggedUser)
-
-    navigation.setOptions({
-      headerLeft: () => (
-        <>
-          {!!user ? (
-            <Button
-              title={user}
-              onPress={logout}
-              buttonStyle={styles.leftButton}
-            />
-          ) : (
-            <Button
-              title="Login"
-              onPress={() => navigation.navigate('Login')}
-              buttonStyle={styles.leftButton}
-            />
-          )}
-        </>
-      ),
-      headerRight: () => (
-        <>
-          {!!user ? (
-            <Button
-              title="+"
-              onPress={() => {}}
-              buttonStyle={styles.rightButton}
-            />
-          ) : (
-            null
-          )}
-        </>
-      )
-    })
   }
+
+  function headerLeft() {
+    return (
+      <>
+        {!!user ? (
+          <Button
+            title={user}
+            onPress={logout}
+            buttonStyle={styles.leftButton}
+          />
+        ) : (
+          <Button
+            title="Login"
+            onPress={() => navigation.navigate('Login')}
+            buttonStyle={styles.leftButton}
+          />
+        )}
+      </>
+    )
+  }
+
+  function headerRight() {
+    return (
+      <>
+        {!!user && (
+          <Button
+            title="+"
+            onPress={() => {}}
+            buttonStyle={styles.rightButton}
+          />
+        )}
+      </>
+    )
+  }
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerLeft,
+      headerRight,
+      headerTitleStyle: styles.headerTitle,
+    })
+  }, [navigation, user])
 
   useEffect(() => {
     getQuestionnaires()
@@ -86,7 +80,7 @@ export default function Home({ navigation }) {
   useFocusEffect(
     useCallback(() => {
       verifyLoggedUser()
-    }, [user])
+    }, [])
   )
 
   return (

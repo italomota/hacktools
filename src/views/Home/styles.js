@@ -12,5 +12,8 @@ export default StyleSheet.create({
   rightButton: {
     marginRight: 8,
     paddingHorizontal: 12,
+  },
+  headerTitle: {
+    marginLeft: 16,
   }
 })
