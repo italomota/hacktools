@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 
 import Home from './views/Home'
 import Answers from './views/Answers'
-import Details from './views/Details'
+import AnswerDetails from './views/AnswerDetails'
 import Login from './views/Login'
 
 const Stack = createStackNavigator()
@@ -27,8 +27,8 @@ export default function App() {
           component={Answers}
         />
         <Stack.Screen
-          name="Details"
-          component={Details}
+          name="AnswerDetails"
+          component={AnswerDetails}
         />
         <Stack.Screen
           name="Login"

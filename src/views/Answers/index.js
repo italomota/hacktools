@@ -47,7 +47,7 @@ export default function Answers({ navigation, route }) {
       <List
         data={answers}
         headerTitle="Respostas"
-        onPressItem={item => navigation.navigate('Details', { answer: item })}
+        onPressItem={item => navigation.navigate('AnswerDetails', { answer: item })}
       />
     </View>
   )

@@ -7,7 +7,7 @@ import api from '../../services/api'
 
 import styles from './styles'
 
-export default function Details({ navigation, route }) {
+export default function AnswerDetails({ navigation, route }) {
   const { answer } = route.params
 
   const [answers, setAnswers] = useState([])
