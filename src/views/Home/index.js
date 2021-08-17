@@ -57,7 +57,7 @@ export default function Home({ navigation }) {
         {!!user && (
           <Button
             title="+"
-            onPress={() => {}}
+            onPress={() => navigation.navigate('NewQuestionnaire')}
             buttonStyle={styles.rightButton}
           />
         )}
@@ -73,13 +73,10 @@ export default function Home({ navigation }) {
     })
   }, [navigation, user])
 
-  useEffect(() => {
-    getQuestionnaires()
-  }, [])
-
   useFocusEffect(
     useCallback(() => {
       verifyLoggedUser()
+      getQuestionnaires()
     }, [])
   )
 
