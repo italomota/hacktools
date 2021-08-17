@@ -17,7 +17,9 @@ export default StyleSheet.create({
   },
   inputStyleConfirmed: {
     marginBottom: 8,
+    borderWidth: 2,
     borderColor: '#609e64',
+    color: '#555'
   },
   buttonStyle: {
     borderTopLeftRadius: 0,
