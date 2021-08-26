@@ -39,7 +39,7 @@ export default function Answers({ navigation, route }) {
         {!!user && (
           <Button
             title="+"
-            onPress={() => {}}
+            onPress={() => navigation.navigate('NewAnswer', { questionnaire })}
             buttonStyle={styles.rightButton}
           />
         )}

@@ -8,6 +8,7 @@ import Answers from './views/Answers'
 import AnswerDetails from './views/AnswerDetails'
 import Login from './views/Login'
 import NewQuestionnaire from './views/NewQuestionnaire'
+import NewAnswer from './views/NewAnswer'
 
 const Stack = createStackNavigator()
 
@@ -38,6 +39,10 @@ export default function App() {
         <Stack.Screen
           name="NewQuestionnaire"
           component={NewQuestionnaire}
+        />
+        <Stack.Screen
+          name="NewAnswer"
+          component={NewAnswer}
         />
       </Stack.Navigator>
     </NavigationContainer>
