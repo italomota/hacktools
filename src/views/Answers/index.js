@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useLayoutEffect } from 'react'
 import { View } from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import List from '../../components/List'
 import Button from '../../components/Button'
@@ -11,20 +12,8 @@ import styles from './styles'
 export default function Answers({ navigation, route }) {
   const { questionnaire } = route.params
 
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      title: questionnaire.title,
-      headerRight: () => (
-        <Button
-          title="+"
-          onPress={() => {}}
-          buttonStyle={styles.rightButton}
-        />
-      )
-    })
-  }, [navigation, questionnaire])
-
   const [answers, setAnswers] = useState([])
+  const [user, setUser] = useState('')
 
   async function getAnswers() {
     const response = await api.get(`/questionnaires/${questionnaire.id}/answers`)
@@ -38,7 +27,35 @@ export default function Answers({ navigation, route }) {
     setAnswers(formattedAnswers)
   }
 
+  async function verifyLoggedUser() {
+    const loggedUser = await AsyncStorage.getItem('user')
+
+    setUser(loggedUser)
+  }
+
+  function headerRight() {
+    return (
+      <>
+        {!!user && (
+          <Button
+            title="+"
+            onPress={() => {}}
+            buttonStyle={styles.rightButton}
+          />
+        )}
+      </>
+    )
+  }
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: questionnaire.title,
+      headerRight,
+    })
+  }, [navigation, questionnaire, user])
+
   useEffect(() => {
+    verifyLoggedUser()
     getAnswers()
   }, [])
 
