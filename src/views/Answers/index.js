@@ -1,6 +1,7 @@
-import React, { useEffect, useState, useLayoutEffect } from 'react'
+import React, { useCallback, useState, useLayoutEffect } from 'react'
 import { View } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { useFocusEffect } from '@react-navigation/native'
 
 import List from '../../components/List'
 import Button from '../../components/Button'
@@ -54,10 +55,12 @@ export default function Answers({ navigation, route }) {
     })
   }, [navigation, questionnaire, user])
 
-  useEffect(() => {
-    verifyLoggedUser()
-    getAnswers()
-  }, [])
+  useFocusEffect(
+    useCallback(() => {
+      verifyLoggedUser()
+      getAnswers()
+    }, [])
+  )
 
   return (
     <View style={styles.container}>
