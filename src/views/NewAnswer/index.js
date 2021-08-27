@@ -3,7 +3,6 @@ import { View } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import Questionnaire from '../../components/Questionnaire'
-import Button from '../../components/Button'
 
 import api from '../../services/api'
 
@@ -20,21 +19,21 @@ export default function NewAnswer({ navigation, route }) {
     setQuestions(response.data)
   }
 
-  async function saveAnswer() {
-    // const user = await AsyncStorage.getItem('user')
+  async function saveAnswer(data) {
+    const user = await AsyncStorage.getItem('user')
 
-    // const data = {
-    //   title,
-    //   questions,
-    // }
+    const headers = {
+      user,
+    }
 
-    // const headers = {
-    //   user,
-    // }
+    const answers = data.map(item => ({
+      question_id: item.id,
+      description: item.answer,
+    }))
 
-    // await api.post(`/questionnaires/${questionnaire.id}/answers`, data, { headers })
+    await api.post(`questionnaires/${questionnaire.id}/answers`, answers, { headers })
 
-    // navigation.goBack()
+    navigation.goBack()
   }
 
   useLayoutEffect(() => {
@@ -49,12 +48,7 @@ export default function NewAnswer({ navigation, route }) {
 
   return (
     <View style={styles.container}>
-      <Questionnaire data={questions} />
-      <Button
-        title="Salvar"
-        onPress={saveAnswer}
-        buttonStyle={styles.buttonStyle}
-      />
+      <Questionnaire data={questions} onPressSave={saveAnswer} />
     </View>
   )
 }
