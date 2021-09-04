@@ -3,7 +3,7 @@ import { FlatList, Text, TouchableOpacity, View } from 'react-native'
 
 import styles from './styles'
 
-export default function List({ data, headerTitle, onPressItem }) {
+export default function List({ data, headerTitle, onPressItem, dataEmptyMessage }) {
   function keyExtractor(item) {
     return String(item.id)
   }
@@ -15,7 +15,7 @@ export default function List({ data, headerTitle, onPressItem }) {
   function Empty() {
     return (
       <View style={styles.emptyContainer}>
-        <Text>Ainda não existem questionários cadastrados</Text>
+        <Text>{dataEmptyMessage}</Text>
       </View>
     )
   }
