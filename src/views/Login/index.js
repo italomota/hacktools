@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View } from 'react-native'
+import { View, ActivityIndicator } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import Button from '../../components/Button'
@@ -9,14 +9,19 @@ import styles from './styles'
 
 export default function Login({ navigation }) {
   const [user, setUser] = useState('')
+  const [loading, setLoading] = useState(false)
 
   async function login() {
     if (!user) {
       return
     }
 
+    setLoading(true)
+
     await AsyncStorage.setItem('user', user)
     navigation.goBack()
+
+    setLoading(false)
   }
 
   return (
@@ -26,7 +31,11 @@ export default function Login({ navigation }) {
         onChangeText={setUser}
         inputStyle={styles.input}
       />
-      <Button title="ENTRAR" onPress={login} containerStyle={styles.button} />
+      {loading ? (
+        <ActivityIndicator color="#167bf7" size="large" />
+      ) : (
+        <Button title="ENTRAR" onPress={login} containerStyle={styles.button} />
+      )}
     </View>
   )
 }
