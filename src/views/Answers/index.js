@@ -5,6 +5,7 @@ import { useFocusEffect } from '@react-navigation/native'
 
 import List from '../../components/List'
 import Button from '../../components/Button'
+import Loading from '../../components/Loading'
 
 import api from '../../services/api'
 
@@ -15,6 +16,7 @@ export default function Answers({ navigation, route }) {
 
   const [answers, setAnswers] = useState([])
   const [user, setUser] = useState('')
+  const [loading, setLoading] = useState(false)
 
   async function getAnswers() {
     const response = await api.get(`/questionnaires/${questionnaire.id}/answers`)
@@ -57,18 +59,24 @@ export default function Answers({ navigation, route }) {
 
   useFocusEffect(
     useCallback(() => {
+      setLoading(true)
       verifyLoggedUser()
       getAnswers()
+      setLoading(false)
     }, [])
   )
 
   return (
     <View style={styles.container}>
-      <List
-        data={answers}
-        headerTitle="Respostas"
-        onPressItem={item => navigation.navigate('AnswerDetails', { answer: item })}
-      />
+      {loading ? (
+        <Loading />
+      ) : (
+        <List
+          data={answers}
+          headerTitle="Respostas"
+          onPressItem={item => navigation.navigate('AnswerDetails', { answer: item })}
+        />
+      )}
     </View>
   )
 }
