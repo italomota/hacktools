@@ -7,12 +7,14 @@ import api from '../../services/api'
 
 import Button from '../../components/Button'
 import List from '../../components/List'
+import Loading from '../../components/Loading'
 
 import styles from './styles'
 
 export default function Home({ navigation }) {
   const [questionnaires, setQuestionnaires] = useState([])
   const [user, setUser] = useState('')
+  const [loading, setLoading] = useState(false)
 
   async function getQuestionnaires() {
     const response = await api.get('questionnaires')
@@ -75,18 +77,24 @@ export default function Home({ navigation }) {
 
   useFocusEffect(
     useCallback(() => {
+      setLoading(true)
       verifyLoggedUser()
       getQuestionnaires()
+      setLoading(false)
     }, [])
   )
 
   return (
     <View style={styles.container}>
-      <List
-        headerTitle="Questionários"
-        data={questionnaires}
-        onPressItem={item => navigation.navigate('Answers', { questionnaire: item })}
-      />
+      {loading ? (
+        <Loading />
+      ) : (
+        <List
+          headerTitle="Questionários"
+          data={questionnaires}
+          onPressItem={item => navigation.navigate('Answers', { questionnaire: item })}
+        />
+      )}
     </View>
   )
 }
