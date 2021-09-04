@@ -93,6 +93,7 @@ export default function Home({ navigation }) {
           headerTitle="Questionários"
           data={questionnaires}
           onPressItem={item => navigation.navigate('Answers', { questionnaire: item })}
+          dataEmptyMessage="Ainda não existem questionários cadastrados"
         />
       )}
     </View>
