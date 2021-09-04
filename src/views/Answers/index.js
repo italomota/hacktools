@@ -75,6 +75,7 @@ export default function Answers({ navigation, route }) {
           data={answers}
           headerTitle="Respostas"
           onPressItem={item => navigation.navigate('AnswerDetails', { answer: item })}
+          dataEmptyMessage="Ainda não existem respostas cadastradas"
         />
       )}
     </View>
