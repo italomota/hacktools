@@ -1,5 +1,5 @@
 import React from 'react'
-import { FlatList, Text, TouchableOpacity } from 'react-native'
+import { FlatList, Text, TouchableOpacity, View } from 'react-native'
 
 import styles from './styles'
 
@@ -10,6 +10,14 @@ export default function List({ data, headerTitle, onPressItem }) {
 
   function Header() {
     return <Text style={styles.headerTitle}>{headerTitle}</Text>
+  }
+
+  function Empty() {
+    return (
+      <View style={styles.emptyContainer}>
+        <Text>Ainda não existem questionários cadastrados</Text>
+      </View>
+    )
   }
 
   function renderItem({ item }) {
@@ -29,6 +37,7 @@ export default function List({ data, headerTitle, onPressItem }) {
       renderItem={renderItem}
       keyExtractor={keyExtractor}
       ListHeaderComponent={Header}
+      ListEmptyComponent={Empty}
     />
   )
 }

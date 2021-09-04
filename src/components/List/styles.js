@@ -16,4 +16,7 @@ export default StyleSheet.create({
   itemText: {
     color: '#333',
   },
+  emptyContainer: {
+    marginTop: 16,
+  },
 })
