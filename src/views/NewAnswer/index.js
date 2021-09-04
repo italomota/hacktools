@@ -12,6 +12,7 @@ export default function NewAnswer({ navigation, route }) {
   const { questionnaire } = route.params
 
   const [questions, setQuestions] = useState([])
+  const [loading, setLoading] = useState(false)
 
   async function getQuestions() {
     const response = await api.get(`/questionnaires/${questionnaire.id}`)
@@ -20,6 +21,8 @@ export default function NewAnswer({ navigation, route }) {
   }
 
   async function saveAnswer(data) {
+    setLoading(true)
+
     const user = await AsyncStorage.getItem('user')
 
     const headers = {
@@ -34,6 +37,8 @@ export default function NewAnswer({ navigation, route }) {
     await api.post(`questionnaires/${questionnaire.id}/answers`, answers, { headers })
 
     navigation.goBack()
+
+    setLoading(false)
   }
 
   useLayoutEffect(() => {
@@ -48,7 +53,7 @@ export default function NewAnswer({ navigation, route }) {
 
   return (
     <View style={styles.container}>
-      <Questionnaire data={questions} onPressSave={saveAnswer} />
+      <Questionnaire data={questions} onPressSave={saveAnswer} loading={loading} />
     </View>
   )
 }
