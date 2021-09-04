@@ -2,6 +2,7 @@ import React, { useLayoutEffect, useEffect, useState } from 'react'
 import { View } from 'react-native'
 
 import Questionnaire from '../../components/Questionnaire'
+import Loading from '../../components/Loading'
 
 import api from '../../services/api'
 
@@ -11,6 +12,7 @@ export default function AnswerDetails({ navigation, route }) {
   const { answer } = route.params
 
   const [answers, setAnswers] = useState([])
+  const [loading, setLoading] = useState(false)
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -25,12 +27,18 @@ export default function AnswerDetails({ navigation, route }) {
   }
 
   useEffect(() => {
+    setLoading(true)
     getAnswers()
+    setLoading(false)
   }, [])
   
   return (
     <View style={styles.container}>
-      <Questionnaire data={answers} />
+      {loading ? (
+        <Loading />
+      ) : (
+        <Questionnaire data={answers} />
+      )}
     </View>
   )
 }
