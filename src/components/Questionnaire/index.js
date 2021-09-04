@@ -2,10 +2,11 @@ import React from 'react'
 import { View, FlatList, Text, TextInput } from 'react-native'
 
 import Button from '../Button'
+import Loading from '../Loading'
 
 import styles from './styles'
 
-export default function Questionnaire({ data, onPressSave }) {
+export default function Questionnaire({ data, onPressSave, loading }) {
   function keyExtractor(item) {
     return String(item.question)
   }
@@ -38,10 +39,16 @@ export default function Questionnaire({ data, onPressSave }) {
         keyExtractor={keyExtractor}
       />
       {!!onPressSave && (
-        <Button
-          title="Salvar"
-          onPress={() => onPressSave(data)}
-        />
+        <>
+          {loading ? (
+            <Loading />
+          ) : (
+            <Button
+              title="Salvar"
+              onPress={() => onPressSave(data)}
+            />
+          )}
+        </>
       )}
     </View>
   )
