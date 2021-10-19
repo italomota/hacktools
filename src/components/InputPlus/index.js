@@ -64,6 +64,7 @@ export default function InputPlus({ onPressPlus }) {
       data={questions}
       renderItem={renderItem}
       keyExtractor={keyExtractor}
+      keyboardShouldPersistTaps="handled"
     />
   )
 }
